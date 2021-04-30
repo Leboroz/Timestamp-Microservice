@@ -17,11 +17,22 @@ app.use(express.static('public'));
 app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
+///views/api/2015-12-25
+app.get("/api", (req, res) => {
+  const date = new Date();
+  
+  return res.json({unix: date.getTime(), utc: date.toUTCString()})
 
+});
 
-// your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+app.get("/api/:data", function (req, res) {
+  const { data } = req.params;
+  const date = new Date(data);
+   if(Number(data))
+   return res.json({unix: Number(data), utc: new Date("2015-12-25").toUTCString()});
+    console.log(date)
+  return res.json({unix: date.getTime(), utc: date.toUTCString()})
+  
 });
 
 
