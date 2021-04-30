@@ -28,9 +28,8 @@ app.get("/api", (req, res) => {
 app.get("/api/:data", function (req, res) {
   const { data } = req.params;
   const date = new Date(data);
-   if(Number(data))
-   return res.json({unix: Number(data), utc: new Date("2015-12-25").toUTCString()});
-    console.log(date)
+  if(Number(data))
+  return res.json({unix: Number(data), utc: new Date("2015-12-25").toUTCString()});
   return res.json({unix: date.getTime(), utc: date.toUTCString()})
   
 });
